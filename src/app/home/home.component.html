@@ -1,0 +1,23 @@
+
+
+<div class="container w-75 mt-5 ">
+  <form [formGroup]="data" (ngSubmit)="submit(data)" class="form-container  bg-success">
+      <label for="task" class="label mb-3 text-white">Add New Task:</label>
+      <input id="task" formControlName="show" class="form-control mb-4" type="text" placeholder="Enter task" />
+
+      <div *ngFor="let item of showdata; let index = index; trackBy: trackByFn" class="task-item shadow-lg rounded p-3 mb-3">
+        <div class="task-header d-flex justify-content-between align-items-center">
+          <i class="fa-solid fa-check" *ngIf="item.mark"></i>
+          <h2 class="task-title mb-0">{{ item.name }}</h2>
+          <div class="task-actions">
+            <span class="delete-btn text-danger" (click)="delet(index)">Delete</span>
+            <span class="ok-btn btn btn-success" *ngIf="!item.mark" (click)="item.mark=true">Ok</span>
+          </div>
+        </div>
+      </div>
+      
+      <button [disabled]="data.invalid" (click)="memorydata(data.value.show) " class="btn btn-primary w-100 mt-4 py-2">Add Task</button>
+  </form>
+</div>
+
+ 
